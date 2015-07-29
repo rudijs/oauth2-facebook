@@ -1,7 +1,21 @@
 'use strict';
 
 var gulp = require('gulp'),
-  mocha = require('gulp-mocha');
+  mocha = require('mocha'),
+  exec = require('child_process').exec,
+  tslint = require('gulp-tslint');
+
+gulp.task('tslint', function(){
+  return gulp.src('lib/get-access-token.ts')
+    .pipe(tslint())
+    .pipe(tslint.report('verbose'));
+});
+
+gulp.task('watch-lint', function() {
+
+  gulp.watch('lib/*.ts', ['tslint']);
+
+});
 
 gulp.task('watch-test', function() {
 
@@ -9,9 +23,14 @@ gulp.task('watch-test', function() {
 
 });
 
-gulp.task('test', function() {
+gulp.task('test', function (cb) {
 
-  return gulp.src('lib/*spec.js', {read: false})
-    .pipe(mocha({reporter: 'spec'}));
+  var tests = '\'lib/*.js\'';
 
+  exec('NODE_ENV=test node ./node_modules/istanbul-harmony/lib/cli.js cover node_modules/mocha/bin/_mocha ' +
+    '-x \'*spec.js\' --root lib/ --dir test/coverage  -- -R spec --recursive ' + tests, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });

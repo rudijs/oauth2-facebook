@@ -7,20 +7,21 @@ var should = chai.should();
 
 import signInUrl = require('./sign-in-url');
 
-describe('Oauth2', () => {
+describe('oauth2-facebook', () => {
 
-    describe('Facebook', () => {
+    describe('sign-in-url', () => {
 
-        let config = {
+        var config = {
             appId: 'abc123',
-            appNamespace: 'rsmweb',
-            redirectUri: '/signin/fb'
+            redirectUrl: {
+                protocol: 'http://',
+                host: 'example.com',
+                uri: '/auth/facebook/callback'
+            }
         };
 
-        it('should', () => {
-            should.exist(signInUrl);
-            var url = signInUrl(config);
-            console.log(url);
+        it('should return a valid facebook sign in url', () => {
+            signInUrl(config).should.equal('https://www.facebook.com/dialog/oauth?scope=public_profile,email&client_id=abc123&redirect_uri=http://example.com/auth/facebook/callback');
         });
 
     });
