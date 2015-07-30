@@ -6,7 +6,7 @@ var gulp = require('gulp'),
   tslint = require('gulp-tslint');
 
 gulp.task('tslint', function(){
-  return gulp.src('lib/get-access-token.ts')
+  return gulp.src('lib/*.ts')
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
 });

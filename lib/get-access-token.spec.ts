@@ -5,11 +5,11 @@ import chai = require('chai');
 import sinon = require('sinon');
 import fs = require('fs');
 import FB = require('fb');
-var should = chai.should();
+let should:any = chai.should();
 
 import getAccessToken = require('./get-access-token');
 
-var fixtureFacebookAccessToken = JSON.parse(fs.readFileSync(__dirname + '/../test/fixtures/facebook-access-token.json').toString());
+let fixtureFacebookAccessToken:string = JSON.parse(fs.readFileSync(__dirname + '/../test/fixtures/facebook-access-token.json').toString());
 
 describe('oauth2-facebook', () => {
 
@@ -21,9 +21,9 @@ describe('oauth2-facebook', () => {
             }
         });
 
-        var code = 'asdf_asdf_asdf';
+        let code:string = 'asdf_asdf_asdf';
 
-        var config = {
+        let config:any = {
             appId: 'abc123',
             appSecret: 'secret',
             redirectUrl: {
@@ -33,39 +33,41 @@ describe('oauth2-facebook', () => {
             }
         };
 
-        it('should handle access_token request errors', (done) => {
+        it('should handle access_token request errors', (done:any) => {
 
-            sinon.stub(FB, 'api', function (action, options, callback) {
+            should.exist(getAccessToken);
+
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
                 callback({error: 'oauth/access_token error occurred.'});
             });
 
-            getAccessToken(config, code).catch((err) => {
+            getAccessToken(config, code).catch((err:string) => {
                 err.should.equal('oauth/access_token error occurred.');
             })
                 .then(done, done);
 
         });
 
-        it('should handle non valid response', (done) => {
+        it('should handle non valid response', (done:any) => {
 
-            sinon.stub(FB, 'api', function (action, options, callback) {
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
                 callback('text response');
             });
 
-            getAccessToken(config, code).catch((err) => {
+            getAccessToken(config, code).catch((err:string) => {
                 err.should.equal('oauth/access_token error occurred.');
             })
                 .then(done, done);
 
         });
 
-        it('should return a facebook oauth access token', (done) => {
+        it('should return a facebook oauth access token', (done:any) => {
 
-            sinon.stub(FB, 'api', function (action, options, callback) {
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
                 callback(fixtureFacebookAccessToken);
             });
 
-            getAccessToken(config, 'abc123').then((res) => {
+            getAccessToken(config, 'abc123').then((res:any) => {
                 res.accessToken.should.equal(fixtureFacebookAccessToken.access_token);
             })
                 .then(done, done);

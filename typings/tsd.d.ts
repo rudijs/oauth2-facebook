@@ -4,3 +4,4 @@
 /// <reference path="q/Q.d.ts" />
 /// <reference path="fb/FB.d.ts" />
 /// <reference path="sinon/sinon.d.ts" />
+/// <reference path="q-io/Q-io.d.ts" />

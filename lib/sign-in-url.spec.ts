@@ -3,7 +3,7 @@
 
 import chai = require('chai');
 
-var should = chai.should();
+let should:any = chai.should();
 
 import signInUrl = require('./sign-in-url');
 
@@ -11,8 +11,9 @@ describe('oauth2-facebook', () => {
 
     describe('sign-in-url', () => {
 
-        var config = {
+        let config:any = {
             appId: 'abc123',
+            appNamespace: 'exampleapp',
             redirectUrl: {
                 protocol: 'http://',
                 host: 'example.com',
@@ -21,7 +22,9 @@ describe('oauth2-facebook', () => {
         };
 
         it('should return a valid facebook sign in url', () => {
-            signInUrl(config).should.equal('https://www.facebook.com/dialog/oauth?scope=public_profile,email&client_id=abc123&redirect_uri=http://example.com/auth/facebook/callback');
+            should.exist(signInUrl);
+            signInUrl(config).should.equal('https://www.facebook.com/dialog/oauth?scope=public_profile,email' +
+                '&client_id=abc123&redirect_uri=http://example.com/auth/facebook/callback');
         });
 
     });
