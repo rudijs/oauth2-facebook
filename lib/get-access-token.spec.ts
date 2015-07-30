@@ -9,7 +9,8 @@ let should:any = chai.should();
 
 import getAccessToken = require('./get-access-token');
 
-let fixtureFacebookAccessToken:any = JSON.parse(fs.readFileSync(__dirname + '/../test/fixtures/facebook-access-token.json').toString());
+let fixtureFacebookAccessToken:any = JSON.parse(
+    fs.readFileSync(__dirname + '/../test/fixtures/facebook-access-token.json').toString());
 
 describe('oauth2-facebook', () => {
 

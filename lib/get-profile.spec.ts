@@ -13,8 +13,6 @@ let fixtureFacebookUserProfile:any = JSON.parse(
     fs.readFileSync(
     path.resolve(__dirname, '../test/fixtures/facebook-user-profile.json')).toString());
 
-let logger:any = sinon.spy();
-
 import getProfile = require('./get-profile');
 
 describe('oauth2-facebook', () => {
@@ -25,7 +23,6 @@ describe('oauth2-facebook', () => {
             if (FB.api.restore) {
                 FB.api.restore();
             }
-            logger.reset();
         });
 
         it('should return a user profile', (done:any) => {
@@ -36,7 +33,7 @@ describe('oauth2-facebook', () => {
                 callback(fixtureFacebookUserProfile);
             });
 
-            getProfile(logger, 'abc123').then(function (res:any):any {
+            getProfile('abc123').then(function (res:any):any {
                 res.id.should.equal(fixtureFacebookUserProfile.id);
             })
                 .then(done, done);
@@ -46,12 +43,11 @@ describe('oauth2-facebook', () => {
         it('should reject non valid user profile response', (done:any) => {
 
             sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
-                callback('text');
+                callback('facebook api error');
             });
 
-            getProfile(logger, 'abc123').catch(function (err:any):any {
-                sinon.assert.calledOnce(logger);
-                err.message.should.equal('FB.api sign in error');
+            getProfile('abc123').catch(function (err:any):any {
+                err.message.should.equal('facebook api error');
             })
                 .then(done, done);
 

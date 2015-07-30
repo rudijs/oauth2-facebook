@@ -13,7 +13,6 @@ describe('oauth2-facebook', () => {
 
         let config:any = {
             appId: 'abc123',
-            appNamespace: 'exampleapp',
             redirectUrl: {
                 protocol: 'http://',
                 host: 'example.com',
@@ -23,8 +22,8 @@ describe('oauth2-facebook', () => {
 
         it('should return a valid facebook sign in url', () => {
             should.exist(signInUrl);
-            signInUrl(config).should.equal('https://www.facebook.com/dialog/oauth?scope=public_profile,email' +
-                '&client_id=abc123&redirect_uri=http://example.com/auth/facebook/callback');
+            /* tslint:disable */
+            signInUrl(config).should.match(/https:\/\/www\.facebook\.com\/dialog\/oauth\?scope=public_profile,email&client_id=abc123&redirect_uri=http:\/\/example.com\/auth\/facebook\/callback&state=.*/);
         });
 
     });

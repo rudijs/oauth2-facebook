@@ -8,3 +8,4 @@ typings/
 *spec.js
 tslint.json
 tsd.json
+gulpfile.js
