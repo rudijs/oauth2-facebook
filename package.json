@@ -4,7 +4,7 @@
   "description": "Node.js oauth2 Facebook sign in module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Use: gulp test\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "fb": "^0.7.0",
-    "q": "^1.4.1",
-    "q-io": "^1.13.1"
+    "q": "^1.4.1"
   }
 }

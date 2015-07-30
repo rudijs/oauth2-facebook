@@ -1,0 +1,10 @@
+.git/
+.gitignore
+.idea/
+node_modules/
+test/
+typings/
+*.ts
+*spec.js
+tslint.json
+tsd.json

@@ -5,22 +5,18 @@ var gulp = require('gulp'),
   exec = require('child_process').exec,
   tslint = require('gulp-tslint');
 
-gulp.task('tslint', function(){
+gulp.task('lint', function(){
   return gulp.src('lib/*.ts')
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
 });
 
 gulp.task('watch-lint', function() {
-
-  gulp.watch('lib/*.ts', ['tslint']);
-
+  gulp.watch('lib/*.ts', ['lint']);
 });
 
 gulp.task('watch-test', function() {
-
   gulp.watch('lib/*.js', ['test']);
-
 });
 
 gulp.task('test', function (cb) {
