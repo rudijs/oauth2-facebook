@@ -39,28 +39,48 @@ describe('oauth2-facebook', () => {
             should.exist(getAccessToken);
 
             sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
-                callback({error: 'oauth/access_token error occurred.'});
+                callback({
+                    error: {
+                        message: 'Error validating application. Invalid application ID.',
+                        type: 'OAuthException',
+                        code: 101
+                    }
+                });
             });
 
             getAccessToken(config, code).catch((err:string) => {
-                err.should.equal('oauth/access_token error occurred.');
+                err.should.equal('Error validating application. Invalid application ID.');
             })
                 .then(done, done);
 
         });
 
-        it('should handle non valid response', (done:any) => {
+        it('should handle an unexpected response', (done:any) => {
 
             sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
-                callback('text response');
+                callback('Unexpected text response');
             });
 
             getAccessToken(config, code).catch((err:string) => {
-                err.should.equal('oauth/access_token error occurred.');
+                err.should.equal('Unexpected text response');
             })
                 .then(done, done);
 
         });
+
+        it('should handle a null body', (done:any) => {
+
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
+                callback();
+            });
+
+            getAccessToken(config, code).catch((err:string) => {
+                err.should.equal('oauth/access_token error occurred');
+            })
+                .then(done, done);
+
+        });
+
 
         it('should return a facebook oauth access token', (done:any) => {
 

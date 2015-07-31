@@ -13,11 +13,17 @@ function getProfile(token:string):any {
 
     FB.api('me', {access_token: token}, function (res:any):any {
 
-        if (!res.email) {
-            deferred.reject(Error(res));
+        if (!res) {
+            deferred.reject('getProfile/me error occurred');
+        }
+        else if (res.email) {
+            deferred.resolve(res);
+        }
+        else if (res.error && res.error.message) {
+            deferred.reject(res.error.message);
         }
         else {
-            deferred.resolve(res);
+            deferred.reject(res);
         }
 
     });

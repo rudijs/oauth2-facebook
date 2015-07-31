@@ -40,14 +40,40 @@ describe('oauth2-facebook', () => {
 
         });
 
-        it('should reject non valid user profile response', (done:any) => {
+        it('should handle an empty response', (done:any) => {
 
             sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
-                callback('facebook api error');
+                callback();
             });
 
             getProfile('abc123').catch(function (err:any):any {
-                err.message.should.equal('facebook api error');
+                err.should.equal('getProfile/me error occurred');
+            })
+                .then(done, done);
+
+        });
+
+        it('should handle a facebook api error response', (done:any) => {
+
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
+                callback(JSON.parse('{"error":{"message":"Invalid OAuth access token.","type":"OAuthException","code":190}}'));
+            });
+
+            getProfile('abc123').catch(function (err:any):any {
+                err.should.equal('Invalid OAuth access token.');
+            })
+                .then(done, done);
+
+        });
+
+        it('should handle an unexpected response', (done:any) => {
+
+            sinon.stub(FB, 'api', function (action:string, options:any, callback:any):any {
+                callback('Unexpected text response');
+            });
+
+            getProfile('abc123').catch(function (err:any):any {
+                err.should.equal('Unexpected text response');
             })
                 .then(done, done);
 

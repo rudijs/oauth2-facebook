@@ -32,18 +32,23 @@ function getAccessToken(config:GetAccessTokenConfig, code:string):any {
         redirect_uri: redirectUrl,
         code: code
     }, function (res:any):void {
-        if (!res || res.error) {
-            deferred.reject(!res ? 'oauth/access_token error occurred.' : res.error);
+
+        if (!res) {
+            deferred.reject('oauth/access_token error occurred');
         }
-        else if (!res.access_token || !res.expires) {
-            deferred.reject('oauth/access_token error occurred.');
-        }
-        else {
+        else if (res.access_token && res.expires) {
             deferred.resolve({
                 accessToken: res.access_token,
                 expires: res.expires
             });
         }
+        else if (res.error && res.error.message) {
+            deferred.reject(res.error.message);
+        }
+        else {
+            deferred.reject(res);
+        }
+
     });
 
     return deferred.promise;
