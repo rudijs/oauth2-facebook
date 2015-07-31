@@ -1,5 +1,7 @@
 # oauth2-facebook
 
+[![Build Status](https://travis-ci.org/rudijs/oauth2-facebook.svg?branch=master)](https://travis-ci.org/rudijs/oauth2-facebook)
+
 ## Overview
 
 Node.js oauth2 Facebook sign in module.
