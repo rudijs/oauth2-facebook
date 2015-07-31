@@ -9,3 +9,4 @@ typings/
 tslint.json
 tsd.json
 gulpfile.js
+.travis.yml
