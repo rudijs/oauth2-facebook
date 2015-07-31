@@ -1,6 +1,6 @@
 {
   "name": "oauth2-facebook",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Node.js oauth2 Facebook sign in module",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/rudijs/oauth2-facebook.git"
   },
   "author": "ooly.me@gmail.com",
-  "license": "GPL2",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rudijs/oauth2-facebook/issues"
   },
