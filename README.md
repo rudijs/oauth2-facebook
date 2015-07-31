@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rudijs/oauth2-facebook.svg?branch=master)](https://travis-ci.org/rudijs/oauth2-facebook)
 [![Coverage Status](https://coveralls.io/repos/rudijs/oauth2-facebook/badge.svg?branch=master&service=github)](https://coveralls.io/github/rudijs/oauth2-facebook?branch=master)
+[![Dependencies Status](https://david-dm.org/rudijs/oauth2-facebook.svg)](https://david-dm.org/rudijs/oauth2-facebook.svg)
 
 ## Overview
 
