@@ -26,6 +26,7 @@
     "typescript": "^1.5.3"
   },
   "dependencies": {
+    "coveralls": "^2.11.3",
     "fb": "^0.7.0",
     "q": "^1.4.1",
     "uuid": "^2.0.1"

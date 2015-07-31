@@ -6,3 +6,4 @@ env:
 script:
   - gulp lint
   - gulp test
+  - npm run coveralls
