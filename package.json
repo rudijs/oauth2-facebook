@@ -1,6 +1,6 @@
 {
   "name": "oauth2-facebook",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Node.js oauth2 Facebook sign in module",
   "main": "index.js",
   "scripts": {
