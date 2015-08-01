@@ -8,7 +8,15 @@
 
 Node.js oauth2 Facebook sign in module.
 
-This module is written in Typescript, uses Promises and the author's intended case use is with KoaJS.
+If you want or need to roll-your-own Facebook login this module with help with the user sign in and get profile.
+ 
+Once you have the user's profile, in JSON format, saving it to your database of choice is then up to you.
+
+## Requirements
+
+Needs node v12.x or > iojs-v1.x
+
+This module uses Promises and Generators. The author's intended case use is within KoaJS.
 
 ## API
 
