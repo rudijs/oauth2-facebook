@@ -20,7 +20,7 @@ This module uses Promises and Generators. The author's intended case use is with
 
 ## API
 
-signInUrl => Returns a Facebook Oauth sign in URL to send the user to.
+signIn => Returns an object with a Facebook Oauth sign in URL to send the user to and a unique string for state.
  
 getAccessToken => With the code returned from signInUrl, request a Facebook API access token.
  
@@ -28,7 +28,7 @@ getProfile => With the access token returned from getAccessToken, request the us
 
 ## Usage
 
-Use `signInUrl` in your routes to send the user to sign in with facebook.com.
+Use `signIn` in your routes to send the user to sign in with facebook.com.
 
 Use `getAccessToken` and `getProfile` in your controller to retrieve the user profile from facebook's API.
 

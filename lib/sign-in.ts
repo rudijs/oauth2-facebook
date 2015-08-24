@@ -17,7 +17,7 @@ interface SignInUrlConfig {
     scope?: string;
 }
 
-function signInUrl(config:SignInUrlConfig):string {
+function signIn(config:SignInUrlConfig):any {
 
     assert.equal(typeof config, 'object', 'required argument config must be an object');
 
@@ -28,7 +28,10 @@ function signInUrl(config:SignInUrlConfig):string {
 
     let redirectUrl:string = `${config.redirectUrl.protocol}${config.redirectUrl.host}${config.redirectUrl.uri}&state=${state}`;
 
-    return `${config.url}?scope=${config.scope}&client_id=${config.appId}&redirect_uri=${redirectUrl}`;
+    return {
+        url: `${config.url}?scope=${config.scope}&client_id=${config.appId}&redirect_uri=${redirectUrl}`,
+        state: state
+    };
 }
 
-export = signInUrl;
+export = signIn;

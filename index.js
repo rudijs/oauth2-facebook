@@ -1,10 +1,10 @@
 'use strict';
 
-var signInUrl = require('./lib/sign-in-url'),
+var signIn = require('./lib/sign-in'),
   getAccessToken = require('./lib/get-access-token'),
   getProfile = require('./lib/get-profile');
 
-exports.signInUrl = signInUrl;
+exports.signIn = signIn;
 
 exports.getAccessToken = getAccessToken;
 

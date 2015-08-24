@@ -5,7 +5,7 @@ import chai = require('chai');
 
 let should:any = chai.should();
 
-import signInUrl = require('./sign-in-url');
+import linkedinSignIn = require('./sign-in');
 
 describe('oauth2-facebook', () => {
 
@@ -21,9 +21,14 @@ describe('oauth2-facebook', () => {
         };
 
         it('should return a valid facebook sign in url', () => {
-            should.exist(signInUrl);
+            should.exist(linkedinSignIn);
+
+            let signin:any = linkedinSignIn(config);
+
             /* tslint:disable */
-            signInUrl(config).should.match(/https:\/\/www\.facebook\.com\/dialog\/oauth\?scope=public_profile,email&client_id=abc123&redirect_uri=http:\/\/example.com\/auth\/facebook\/callback&state=.*/);
+            signin.url.should.match(/https:\/\/www\.facebook\.com\/dialog\/oauth\?scope=public_profile,email&client_id=abc123&redirect_uri=http:\/\/example.com\/auth\/facebook\/callback&state=.*/);
+
+            signin.state.should.match(/(\w{8}(-\w{4}){3}-\w{12}?)/g);
         });
 
     });
