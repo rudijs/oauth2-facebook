@@ -12,7 +12,7 @@ function getProfile(token:string):any {
     let deferred:any = Q.defer();
 
     FB.api('me', {
-        fields: ['id','name','first_name','last_name','email','gender','timezone','link','locale'],
+        fields: ['id', 'name', 'first_name', 'last_name', 'email', 'gender', 'timezone', 'link', 'locale'],
         access_token: token
     }, function (res:any):any {
 
