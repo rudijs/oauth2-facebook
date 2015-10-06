@@ -11,7 +11,10 @@ function getProfile(token:string):any {
 
     let deferred:any = Q.defer();
 
-    FB.api('me', {access_token: token}, function (res:any):any {
+    FB.api('me', {
+        fields: ['id','name','first_name','last_name','email','gender','timezone','link','locale'],
+        access_token: token
+    }, function (res:any):any {
 
         if (!res) {
             deferred.reject('getProfile/me error occurred');
